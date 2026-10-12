@@ -377,7 +377,7 @@ internal sealed class ProxyStatusWindow : Window
     {
         Content = text,
         Padding = new Thickness(14, 5),
-        Foreground = accent ? Brushes.White : Palette.TextBrush,
+        Foreground = accent ? Palette.OnAccentBrush : Palette.TextBrush,
         Background = accent ? Palette.AccentBrush : Palette.PanelBgBrush,
         CornerRadius = new CornerRadius(5),
     };
@@ -453,7 +453,7 @@ internal sealed class ProxyStatusWindow : Window
             (_status.Text, _status.Foreground) = row.State switch
             {
                 ProxyState.Ready => ($"{target}Ready{size}", Palette.GoodBrush),
-                ProxyState.Building => (string.Create(CultureInfo.InvariantCulture, $"{target}Building… {row.Progress * 100:0}%"), Palette.AccentBrush),
+                ProxyState.Building => (string.Create(CultureInfo.InvariantCulture, $"{target}Building… {row.Progress * 100:0}%"), Palette.AccentTextBrush),
                 ProxyState.Queued => ($"{target}Queued{reason}", Palette.MutedTextBrush),
                 ProxyState.Recommended => ($"{target}Recommended — playback dropped frames", Palette.WarnBrush),
                 ProxyState.NotGenerated => ($"{target}Not generated{reason}", Palette.MutedTextBrush),

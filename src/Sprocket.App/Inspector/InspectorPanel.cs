@@ -41,7 +41,7 @@ public sealed class InspectorPanel : UserControl
 
     // The effect headers' enable LED (component-local per the Palette remark): unlit grey, and the
     // lit state's soft halo — Palette.Good at ~45% alpha so the glow reads as light bleed, not a ring.
-    private static readonly IBrush LedOffBrush = new SolidColorBrush(Color.Parse("#3A4048"));
+    private static readonly IBrush LedOffBrush = new SolidColorBrush(Color.Parse("#3A3D47"));
     private static readonly Color LedGlow = Color.FromArgb(0x73, Palette.Good.R, Palette.Good.G, Palette.Good.B);
     private static readonly IBrush TextBrush = Palette.TextBrush;
     private static readonly IBrush MutedText = Palette.MutedTextBrush;
@@ -439,7 +439,8 @@ public sealed class InspectorPanel : UserControl
                 HorizontalContentAlignment = HorizontalAlignment.Left,
                 Padding = new Avalonia.Thickness(8, 3),
                 Background = active ? Accent : RaisedBg,
-                Foreground = TextBrush,
+                // Project Club: texto claro sobre o coral reprova AA — o ângulo ativo usa OnAccent (escuro).
+                Foreground = active ? Palette.OnAccentBrush : TextBrush,
                 BorderBrush = Edge,
             };
             button.Click += (_, _) =>

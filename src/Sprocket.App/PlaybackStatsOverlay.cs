@@ -369,7 +369,7 @@ internal sealed class PlaybackStatsOverlay : Window
         var line = new Border
         {
             Height = 1,
-            Background = new SolidColorBrush(Color.Parse("#23232B")),
+            Background = new SolidColorBrush(Color.Parse("#26282F")),
             Margin = new Thickness(0, 7),
         };
         Grid.SetRow(line, row);

@@ -48,11 +48,13 @@ public sealed class TimelineControl : Control
     private const double FadeHandleGrip = 6;
     private const double FadeHandleBand = 9;
 
-    private static readonly IBrush PaneBg = Brush("#101016");
-    private static readonly IBrush RulerBg = Brush("#16161C");
-    private static readonly IBrush HeaderBg = Brush("#1A1A22");
-    private static readonly IBrush LaneEven = Brush("#14141B");
-    private static readonly IBrush LaneOdd = Brush("#171720");
+    // Project Club: superfícies da timeline levadas para a paleta compartilhada — #0E0F12 (o tom mais
+    // profundo, em volta da timeline), régua/linhas alternadas em #17181C/#131417 e cabeçalhos em #1E1F24.
+    private static readonly IBrush PaneBg = Brush("#0E0F12");
+    private static readonly IBrush RulerBg = Brush("#17181C");
+    private static readonly IBrush HeaderBg = Brush("#1E1F24");
+    private static readonly IBrush LaneEven = Brush("#131417");
+    private static readonly IBrush LaneOdd = Brush("#17181C");
     private static readonly IBrush VideoFill = Brush("#2F3A5C");
     private static readonly IBrush AudioFill = Brush("#2C4A39");
     private static readonly IBrush SequenceFill = Brush("#1F5C63"); // nested-sequence clips (teal, distinct from media)
@@ -67,8 +69,10 @@ public sealed class TimelineControl : Control
     private static readonly IBrush FaintText = Palette.FaintTextBrush;
     private static readonly IBrush Accent = Palette.AccentBrush;
     private static readonly IBrush ToggleOn = Palette.AccentBrush;
+    // Project Club: glifo dos toggles ligados (fundo coral) usa OnAccent — branco sobre coral reprova AA.
+    private static readonly IBrush OnAccent = Palette.OnAccentBrush;
     private static readonly IBrush ToggleOff = Palette.EdgeBrush;
-    private static readonly Pen GridPen = new(Brush("#24242E"), 1);
+    private static readonly Pen GridPen = new(Brush("#26282F"), 1);
     private static readonly IBrush MarkerLine = Brush("#33FFFFFF");
     private static readonly Pen EdgePen = new(Palette.EdgeBrush, 1);
     private static readonly Pen PlayheadPen = new(Palette.AccentBrush, 1.5);
@@ -100,7 +104,8 @@ public sealed class TimelineControl : Control
     // yellow = un-rendered effects. In/out marks (I / O) shade their range over the ruler.
     private static readonly IBrush RenderedBar = Brush("#3FA34D");
     private static readonly IBrush NeedsRenderBar = Brush("#D9A514");
-    private static readonly IBrush NeedsRenderHeavyBar = Brush("#C94F4F");
+    // Project Club: era #C94F4F (perto demais do acento coral); carmim mais fechado para não confundir.
+    private static readonly IBrush NeedsRenderHeavyBar = Brush("#C8213F");
     private static readonly IBrush InOutFill = new ImmutableSolidColorBrush(Colors.White, 0.08);
     private static readonly Pen InOutPen = new(new ImmutableSolidColorBrush(Palette.Accent, 0.9), 1);
 
@@ -1756,7 +1761,7 @@ public sealed class TimelineControl : Control
         ctx.DrawRectangle(on ? ToggleOn : ToggleOff, null, new RoundedRect(box, 3));
         // Center the glyph in the box rather than a fixed left offset — narrower glyphs (S)
         // otherwise sit left with extra space on their right.
-        var text = Label(glyph, 10, on ? Brushes.White : MutedText);
+        var text = Label(glyph, 10, on ? OnAccent : MutedText);
         ctx.DrawText(text, new Point(
             box.X + (box.Width - text.Width) / 2,
             box.Y + (box.Height - text.Height) / 2));
@@ -1766,7 +1771,7 @@ public sealed class TimelineControl : Control
     {
         ctx.DrawRectangle(on ? ToggleOn : ToggleOff, null, new RoundedRect(box, 3));
         var iconBox = new Rect(box.X + 4, box.Y + 4, Math.Max(0, box.Width - 8), Math.Max(0, box.Height - 8));
-        DrawIcon(ctx, icon, iconBox, on ? Brushes.White : MutedText);
+        DrawIcon(ctx, icon, iconBox, on ? OnAccent : MutedText);
     }
 
     /// <summary>Draws vector icon geometry (Icons.cs) uniformly scaled and centered into <paramref name="box"/>

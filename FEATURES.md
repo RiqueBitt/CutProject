@@ -108,7 +108,7 @@ in terms an app-side committer can check against their diff.
 | Status bar (engine state, messages, live fps/size/duration) | UI.md §3.7; MainWindow.axaml.cs `RenderTelemetry` | get-started/getting-started.md#a-quick-tour-of-the-main-screen | ✅ |
 | Help ▸ About (version, open logs folder) | Sprocket.App/Dialogs.cs `AboutDialog` | — | ❌ |
 | Help ▸ Third-Party Notices (bundled library/font/media licenses) | Sprocket.App/Dialogs.cs `ThirdPartyNoticesDialog`; THIRD-PARTY-NOTICES.md | — | ❌ |
-| Auto-update (Help ▸ Check for Updates; status-bar badge with Help-menu discoverability dot + age-based colour escalation; one-time first-run toast per version; installed builds download + Install & Restart in-app with an inline "what's new" changelog for the offered version and a "Full Release Notes" link to that release's GitHub page; portable builds link to the releases page) | Sprocket.App/UpdateService.cs; UpdateDialogs.cs; UpdateEscalation.cs; scripts/release.ps1 `Get-FeedReleaseNotes`; PLAN.md steps 36 + 45 | — | ❌ |
+| Auto-update (Help ▸ Check for Updates; status-bar badge with Help-menu discoverability dot + age-based colour escalation; one-time first-run toast per version; installed builds download + Install & Restart in-app with an inline "what's new" changelog for the offered version and a "Full Release Notes" link to that release's GitHub page; portable builds link to the releases page. **CutProject/Project Club:** self-update is disabled — Help ▸ Check for Updates now says (PT-BR) that CutProject is updated via the Project Club Apps tab, with the GitHub releases link kept as secondary) | Sprocket.App/UpdateService.cs; UpdateDialogs.cs; UpdateEscalation.cs; scripts/release.ps1 `Get-FeedReleaseNotes`; PLAN.md steps 36 + 45 | — | ❌ |
 | Add to applications menu (Linux AppImage only: first-run offer + Help ▸ Add/Remove from Applications Menu; writes a per-user launcher + icon so the AppImage appears in the menu) | Sprocket.App/LinuxDesktopIntegration.cs; MainWindow.axaml.cs `MaybeOfferLinuxDesktopIntegrationAsync` | — | ❌ |
 | Help ▸ Sprocket Website (opens sprocketvideo.org; also linked in About) | MainWindow.axaml.cs `OpenWebsiteAsync`; Dialogs.cs `AboutDialog.WebsiteUrl` | — | ➖ (trivial; mention only if asked) |
 | Help ▸ Documentation (opens sprocketvideo.org/docs/) | MainWindow.axaml.cs `OpenUriAsync`; Dialogs.cs `AboutDialog.DocsUrl` | — | ➖ (trivial; mention only if asked) |
@@ -365,7 +365,7 @@ Preferences or an "advanced" page.
 | Cache management (clear proxy / render caches; "Clear proxy cache" routes through the proxy service so View ▸ Proxy stays consistent) | PreferencesDialog.cs | — | ❌ |
 | Export metadata defaults (with `{project}`/`{username}`/`{year}`/`{date}` tokens) | PreferencesDialog.cs; Sprocket.App/MetadataTokens.cs | — | ❌ |
 | Autosave interval | PreferencesDialog.cs | get-started/projects-and-saving.md#change-how-often-sprocket-autosaves | ✅ |
-| Update check settings (enable/disable) | PreferencesDialog.cs; Sprocket.App/UpdateService.cs | — | ❌ |
+| Update check settings (enable/disable) — **CutProject/Project Club:** toggle hidden (no effect; updates come via the Project Club Apps tab), Preferences ▸ Updates shows only that note | PreferencesDialog.cs; Sprocket.App/UpdateService.cs | — | ❌ |
 | AI control (MCP) settings | PreferencesDialog.cs | ai/ai-control.md#turn-on-ai-control | ✅ |
 
 ---

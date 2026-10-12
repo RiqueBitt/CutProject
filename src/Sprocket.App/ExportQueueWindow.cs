@@ -172,7 +172,7 @@ internal sealed class ExportQueueWindow : Window
     {
         Content = text,
         Padding = new Thickness(14, 5),
-        Foreground = accent ? Brushes.White : Palette.TextBrush,
+        Foreground = accent ? Palette.OnAccentBrush : Palette.TextBrush,
         Background = accent ? Palette.AccentBrush : Palette.PanelBgBrush,
         CornerRadius = new CornerRadius(5),
     };
@@ -268,7 +268,7 @@ internal sealed class ExportQueueWindow : Window
             (_status.Text, _status.Foreground) = job.Status switch
             {
                 ExportJobStatus.Queued => ("Queued", Palette.MutedTextBrush),
-                ExportJobStatus.Running => ($"Exporting… {job.Progress * 100:0}%", Palette.AccentBrush),
+                ExportJobStatus.Running => ($"Exporting… {job.Progress * 100:0}%", Palette.AccentTextBrush),
                 ExportJobStatus.Succeeded => ("Done", Palette.GoodBrush),
                 ExportJobStatus.Cancelled => ("Cancelled", Palette.MutedTextBrush),
                 ExportJobStatus.Failed => ($"Failed — {job.Error}", Palette.BadBrush),

@@ -82,16 +82,13 @@ internal static class PreferencesDialog
         stillDuration.HorizontalAlignment = HorizontalAlignment.Left;
 
         // ── Updates (PLAN.md steps 36 + 45) ─────────────────────────────────────────────────────
-        var updatesEnabled = new CheckBox
-        {
-            Content = "Check for updates at startup",
-            IsChecked = current.UpdateCheckEnabled,
-            Foreground = Palette.TextBrush,
-        };
+        // Project Club: o toggle "Check for updates at startup" (UpdateCheckEnabled) foi escondido — o
+        // UpdateService não checa mais nada (o auto-update próprio está desligado), então o toggle não
+        // fazia efeito. A seção agora só informa que as atualizações vêm pelo Project Club. O valor salvo
+        // de UpdateCheckEnabled não é alterado por este diálogo (o "current with { ... }" do OK o preserva).
         var updatesNote = new TextBlock
         {
-            Text = "CutProject tells you when a newer build is published; nothing downloads or installs " +
-                   "without your say-so. Portable builds are pointed at the releases page instead.",
+            Text = "O CutProject é atualizado pela aba Apps do Project Club.",
             Foreground = Palette.MutedTextBrush,
             FontSize = Typography.Caption,
             TextWrapping = TextWrapping.Wrap,
@@ -156,7 +153,7 @@ internal static class PreferencesDialog
         {
             Content = "OK",
             Padding = new Thickness(18, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -227,7 +224,6 @@ internal static class PreferencesDialog
                                     + "uses the system default."),
 
                                 Section("Updates"),
-                                updatesEnabled,
                                 updatesNote,
 
                                 Section("AI control (MCP)"),
@@ -295,7 +291,6 @@ internal static class PreferencesDialog
             McpPort = PreferencesFormat.ParsePort(port.Text) ?? current.McpPort,
             McpRequireToken = requireToken.IsChecked == true,
             McpToken = token,
-            UpdateCheckEnabled = updatesEnabled.IsChecked == true,
             AudioOutputDevice = deviceSpecs[audioDevice.SelectedIndex >= 0 ? audioDevice.SelectedIndex : 0],
         }));
         cancel.Click += (_, _) => dialog.Close((UserSettings?)null);

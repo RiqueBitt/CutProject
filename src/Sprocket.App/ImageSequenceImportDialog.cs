@@ -58,7 +58,7 @@ internal static class ImageSequenceImportDialog
         {
             Content = "Import",
             Padding = new Thickness(18, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };

@@ -5,8 +5,10 @@
              Name="CutProject"
              RequestedThemeVariant="Dark">
   <Application.Resources>
-    <!-- Palette (UI.md §1): near-black surfaces + a single indigo/violet accent. All values come from the
-         Palette class (Palette.cs) so the shell and the custom-drawn Skia surfaces share one source. -->
+    <!-- Palette (UI.md §1): near-black surfaces + a single accent. All values come from the
+         Palette class (Palette.cs) so the shell and the custom-drawn Skia surfaces share one source.
+         Project Club: paleta escura compartilhada do ecossistema, com o acento coral (#F87171) do CutProject;
+         texto/ícones sobre preenchimento de acento usam OnAccent (escuro), não branco. -->
     <SolidColorBrush x:Key="WindowBg" Color="{x:Static app:Palette.WindowBg}" />
     <SolidColorBrush x:Key="PanelBg" Color="{x:Static app:Palette.PanelBg}" />
     <SolidColorBrush x:Key="RaisedBg" Color="{x:Static app:Palette.RaisedBg}" />
@@ -16,6 +18,7 @@
     <SolidColorBrush x:Key="FaintText" Color="{x:Static app:Palette.FaintText}" />
     <SolidColorBrush x:Key="Accent" Color="{x:Static app:Palette.Accent}" />
     <SolidColorBrush x:Key="AccentHover" Color="{x:Static app:Palette.AccentHover}" />
+    <SolidColorBrush x:Key="OnAccent" Color="{x:Static app:Palette.OnAccent}" />
     <SolidColorBrush x:Key="Danger" Color="{x:Static app:Palette.Danger}" />
 
     <!-- Semantic status (status-bar dot; playback-stats health). -->
@@ -77,13 +80,13 @@
     <SolidColorBrush x:Key="MenuFlyoutItemForeground" Color="{x:Static app:Palette.Text}" />
     <SolidColorBrush x:Key="MenuFlyoutItemForegroundDisabled" Color="{x:Static app:Palette.FaintText}" />
     <SolidColorBrush x:Key="MenuFlyoutItemBackgroundPointerOver" Color="{x:Static app:Palette.Accent}" />
-    <SolidColorBrush x:Key="MenuFlyoutItemForegroundPointerOver" Color="White" />
+    <SolidColorBrush x:Key="MenuFlyoutItemForegroundPointerOver" Color="{x:Static app:Palette.OnAccent}" />
     <SolidColorBrush x:Key="MenuFlyoutItemBackgroundPressed" Color="{x:Static app:Palette.AccentHover}" />
-    <SolidColorBrush x:Key="MenuFlyoutItemForegroundPressed" Color="White" />
+    <SolidColorBrush x:Key="MenuFlyoutItemForegroundPressed" Color="{x:Static app:Palette.OnAccent}" />
     <SolidColorBrush x:Key="MenuFlyoutSubItemChevron" Color="{x:Static app:Palette.MutedText}" />
-    <SolidColorBrush x:Key="MenuFlyoutSubItemChevronPointerOver" Color="White" />
+    <SolidColorBrush x:Key="MenuFlyoutSubItemChevronPointerOver" Color="{x:Static app:Palette.OnAccent}" />
     <SolidColorBrush x:Key="MenuFlyoutItemKeyboardAcceleratorTextForeground" Color="{x:Static app:Palette.MutedText}" />
-    <SolidColorBrush x:Key="MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver" Color="White" />
+    <SolidColorBrush x:Key="MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver" Color="{x:Static app:Palette.OnAccent}" />
     <SolidColorBrush x:Key="MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled" Color="{x:Static app:Palette.FaintText}" />
 
     <!-- Plain Flyout (the timeline Fit-zoom flyout). -->
@@ -95,13 +98,13 @@
     <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="{x:Static app:Palette.Edge}" />
     <SolidColorBrush x:Key="ComboBoxItemForeground" Color="{x:Static app:Palette.Text}" />
     <SolidColorBrush x:Key="ComboBoxItemBackgroundPointerOver" Color="{x:Static app:Palette.Accent}" />
-    <SolidColorBrush x:Key="ComboBoxItemForegroundPointerOver" Color="White" />
+    <SolidColorBrush x:Key="ComboBoxItemForegroundPointerOver" Color="{x:Static app:Palette.OnAccent}" />
     <SolidColorBrush x:Key="ComboBoxItemBackgroundSelected" Color="{x:Static app:Palette.Accent}" />
-    <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="White" />
+    <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="{x:Static app:Palette.OnAccent}" />
     <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedPointerOver" Color="{x:Static app:Palette.AccentHover}" />
-    <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPointerOver" Color="White" />
+    <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPointerOver" Color="{x:Static app:Palette.OnAccent}" />
     <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedPressed" Color="{x:Static app:Palette.AccentHover}" />
-    <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPressed" Color="White" />
+    <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPressed" Color="{x:Static app:Palette.OnAccent}" />
 
     <!-- ToolTips. -->
     <SolidColorBrush x:Key="ToolTipBackground" Color="{x:Static app:Palette.WindowBg}" />
@@ -110,20 +113,34 @@
 
     <!-- FluentTheme seeds SystemAccentColor from the OS (Windows-blue on Windows), which leaks into
          ComboBox selection, CheckBoxes, Slider fills, and text selection. Pin the whole ramp to the
-         Sprocket indigo so accent-tinted Fluent states match Palette.Accent everywhere. -->
-    <Color x:Key="SystemAccentColor">#66A1DD</Color>
-    <Color x:Key="SystemAccentColorDark1">#5590CC</Color>
-    <Color x:Key="SystemAccentColorDark2">#447FBB</Color>
-    <Color x:Key="SystemAccentColorDark3">#336EAA</Color>
-    <Color x:Key="SystemAccentColorLight1">#78AFE6</Color>
-    <Color x:Key="SystemAccentColorLight2">#89BCF0</Color>
-    <Color x:Key="SystemAccentColorLight3">#9AC8F7</Color>
+         app accent so accent-tinted Fluent states match Palette.Accent everywhere.
+         Project Club: rampa do coral do CutProject — base #F87171, escuros até o #DC2626 da paleta
+         (e um passo além), claros até o #FCA5A5/#FECACA. -->
+    <Color x:Key="SystemAccentColor">#F87171</Color>
+    <Color x:Key="SystemAccentColorDark1">#EF4444</Color>
+    <Color x:Key="SystemAccentColorDark2">#DC2626</Color>
+    <Color x:Key="SystemAccentColorDark3">#B91C1C</Color>
+    <Color x:Key="SystemAccentColorLight1">#FA8A8A</Color>
+    <Color x:Key="SystemAccentColorLight2">#FCA5A5</Color>
+    <Color x:Key="SystemAccentColorLight3">#FECACA</Color>
+
+    <!-- Project Club: o Fluent desenha branco sobre os preenchimentos de acento (ToggleButton marcado,
+         check do CheckBox). Branco sobre o coral fica em ~2.8:1, então esses estados usam OnAccent. -->
+    <SolidColorBrush x:Key="ToggleButtonForegroundChecked" Color="{x:Static app:Palette.OnAccent}" />
+    <SolidColorBrush x:Key="ToggleButtonForegroundCheckedPointerOver" Color="{x:Static app:Palette.OnAccent}" />
+    <SolidColorBrush x:Key="ToggleButtonForegroundCheckedPressed" Color="{x:Static app:Palette.OnAccent}" />
+    <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundChecked" Color="{x:Static app:Palette.OnAccent}" />
+    <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundCheckedPointerOver" Color="{x:Static app:Palette.OnAccent}" />
+    <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundCheckedPressed" Color="{x:Static app:Palette.OnAccent}" />
+    <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundIndeterminate" Color="{x:Static app:Palette.OnAccent}" />
+    <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundIndeterminatePointerOver" Color="{x:Static app:Palette.OnAccent}" />
+    <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundIndeterminatePressed" Color="{x:Static app:Palette.OnAccent}" />
   </Application.Resources>
 
   <Application.Styles>
     <FluentTheme />
 
-    <!-- Shell styling (PLAN.md step 11 / UI.md §1): dark near-black panels, a single indigo accent. -->
+    <!-- Shell styling (PLAN.md step 11 / UI.md §1): dark near-black panels, a single accent (Project Club: coral). -->
 
     <!-- Titled pane container. -->
     <Style Selector="Border.pane">
@@ -134,7 +151,7 @@
     </Style>
 
     <!-- The active work area of the Tab / Shift+Tab focus ring (WorkAreaFocus, Shift+1–4 activate directly):
-         the pane that owns keyboard focus reads with an accent edge — the indigo the style guide reserves for
+         the pane that owns keyboard focus reads with an accent edge — the accent the style guide reserves for
          selection outlines. Declared after Border.pane so it wins the BorderBrush setter. -->
     <Style Selector="Border.pane.activeArea">
       <Setter Property="BorderBrush" Value="{DynamicResource Accent}" />
@@ -197,7 +214,7 @@
     <!-- Primary action button (Export). -->
     <Style Selector="Button.primary">
       <Setter Property="Background" Value="{DynamicResource Accent}" />
-      <Setter Property="Foreground" Value="White" />
+      <Setter Property="Foreground" Value="{DynamicResource OnAccent}" />
       <Setter Property="FontSize" Value="{x:Static app:Typography.Body}" />
       <Setter Property="Padding" Value="13,0" />
       <Setter Property="Height" Value="24" />
@@ -206,6 +223,7 @@
     </Style>
     <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
       <Setter Property="Background" Value="{DynamicResource AccentHover}" />
+      <Setter Property="Foreground" Value="{DynamicResource OnAccent}" />
     </Style>
 
     <!-- Tool-palette radio buttons (Select / Blade / Slip / Hand / Zoom): the checked one shows white. -->
@@ -247,15 +265,15 @@
     <!-- Play/Pause is the primary transport control — carry the accent so it reads as primary. -->
     <Style Selector="Button.transport.play">
       <Setter Property="Background" Value="{DynamicResource Accent}" />
-      <Setter Property="Foreground" Value="White" />
+      <Setter Property="Foreground" Value="{DynamicResource OnAccent}" />
     </Style>
     <Style Selector="Button.transport.play:pointerover /template/ ContentPresenter">
       <Setter Property="Background" Value="{DynamicResource AccentHover}" />
-      <Setter Property="Foreground" Value="White" />
+      <Setter Property="Foreground" Value="{DynamicResource OnAccent}" />
     </Style>
     <Style Selector="Button.transport.play:pressed /template/ ContentPresenter">
       <Setter Property="Background" Value="{DynamicResource Accent}" />
-      <Setter Property="Foreground" Value="White" />
+      <Setter Property="Foreground" Value="{DynamicResource OnAccent}" />
     </Style>
 
     <!-- Inspector section headers (InspectorPanel.cs Section(), Classes="inspectorSection") draw their own

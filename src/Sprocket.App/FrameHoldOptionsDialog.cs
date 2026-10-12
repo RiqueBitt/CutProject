@@ -71,7 +71,7 @@ internal static class FrameHoldOptionsDialog
         {
             Content = "OK",
             Padding = new Thickness(18, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };

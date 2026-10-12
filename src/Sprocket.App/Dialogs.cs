@@ -83,7 +83,7 @@ internal static class AboutDialog
             Content = "Close",
             HorizontalAlignment = HorizontalAlignment.Center,
             Padding = new Thickness(18, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -192,7 +192,7 @@ internal static class ThirdPartyNoticesDialog
             Content = "Close",
             HorizontalAlignment = HorizontalAlignment.Right,
             Padding = new Thickness(18, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -241,7 +241,7 @@ internal static class ConfirmDialog
         {
             Content = confirmText,
             Padding = new Thickness(16, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -325,7 +325,7 @@ internal static class SaveChangesDialog
         {
             Content = "Save",
             Padding = new Thickness(16, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
             IsDefault = true, // Enter saves…
@@ -405,7 +405,7 @@ internal static class MessageDialog
         {
             Content = buttonText,
             Padding = new Thickness(18, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -513,7 +513,7 @@ internal static class SpeedDialog
         {
             Content = "Apply",
             Padding = new Thickness(16, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -664,7 +664,7 @@ internal static class SequenceSettingsDialog
         {
             Content = acceptLabel,
             Padding = new Thickness(16, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -1089,7 +1089,7 @@ internal static class ExportSettingsDialog
         {
             Content = "Export…",
             Padding = new Thickness(16, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -1341,7 +1341,7 @@ internal static class ExportSettingsDialog
         {
             Content = "Save",
             Padding = new Thickness(16, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };

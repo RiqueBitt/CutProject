@@ -33,7 +33,7 @@ internal static class UpdateAvailableDialog
         {
             Content = "Install & Restart",
             Padding = new Thickness(18, 5),
-            Foreground = Brushes.White,
+            Foreground = Palette.OnAccentBrush,
             Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
@@ -247,34 +247,40 @@ internal static class UpdateAvailableDialog
 }
 
 /// <summary>Shown when Help ▸ Check for Updates runs in a build that isn't a Velopack install
-/// (portable zip / dev run) — those can't self-update, so deep-link to the releases page instead.</summary>
+/// (portable zip / dev run) — those can't self-update, so deep-link to the releases page instead.
+/// <para>
+/// Project Club: como o auto-update próprio (Velopack) está desligado no UpdateService, este é o diálogo
+/// que Help ▸ Check for Updates sempre mostra. Ele avisa que o CutProject é atualizado pela aba Apps do
+/// Project Club; o link para as releases do GitHub fica só como informação secundária (botão comum, não o
+/// de acento).
+/// </para></summary>
 internal static class UpdateNotInstalledDialog
 {
     public static Task Show(Window owner)
     {
         var open = new Button
         {
-            Content = "Open Releases Page",
-            Padding = new Thickness(16, 5),
-            Foreground = Brushes.White,
-            Background = Palette.AccentBrush,
+            Content = "Ver releases no GitHub",
+            Padding = new Thickness(14, 5),
+            Foreground = Palette.TextBrush,
+            Background = Palette.PanelBgBrush,
             CornerRadius = new CornerRadius(5),
         };
         var close = new Button
         {
-            Content = "Close",
-            Padding = new Thickness(16, 5),
-            Foreground = Palette.TextBrush,
-            Background = Palette.PanelBgBrush,
+            Content = "OK",
+            Padding = new Thickness(18, 5),
+            Foreground = Palette.OnAccentBrush,
+            Background = Palette.AccentBrush,
             CornerRadius = new CornerRadius(5),
         };
 
         var dialog = new Window
         {
-            Title = "Check for Updates",
+            Title = "Verificar atualizações",
             Icon = AppIcon.Window,
             Width = 460,
-            Height = 190,
+            Height = 210,
             CanResize = false,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = Palette.WindowBgBrush,
@@ -290,17 +296,30 @@ internal static class UpdateNotInstalledDialog
                         HorizontalAlignment = HorizontalAlignment.Right,
                         Spacing = 8,
                         Margin = new Thickness(0, 16, 0, 0),
-                        Children = { close, open },
+                        Children = { open, close },
                     },
-                    new TextBlock
+                    new StackPanel
                     {
-                        Text = $"You are running {Program.AppVersion}. This is a portable or development " +
-                               "build, so it doesn't update itself — new releases can be downloaded from " +
-                               "the CutProject releases page.",
-                        Foreground = Palette.TextBrush,
-                        FontSize = Typography.Body,
-                        TextWrapping = TextWrapping.Wrap,
+                        Spacing = 8,
                         VerticalAlignment = VerticalAlignment.Center,
+                        Children =
+                        {
+                            new TextBlock
+                            {
+                                Text = "O CutProject é atualizado pela aba Apps do Project Club.",
+                                Foreground = Palette.TextBrush,
+                                FontSize = Typography.Emphasis,
+                                TextWrapping = TextWrapping.Wrap,
+                            },
+                            new TextBlock
+                            {
+                                Text = $"Versão atual: {Program.AppVersion}. As notas de cada versão também ficam " +
+                                       "na página de releases do CutProject no GitHub.",
+                                Foreground = Palette.MutedTextBrush,
+                                FontSize = Typography.Body,
+                                TextWrapping = TextWrapping.Wrap,
+                            },
+                        },
                     },
                 },
             },

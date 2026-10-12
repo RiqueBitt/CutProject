@@ -35,7 +35,7 @@ public sealed class KeyframeLane : Control
     private const double Diamond = 4.5;
     private const double HandleR = 3.5;
 
-    private static readonly IBrush LaneBg = Brush("#1A1A22");
+    private static readonly IBrush LaneBg = Brush("#1E1F24");
     private static readonly IBrush KeyFill = Brush("#9AA4B2");   // Linear keyframes (diamond)
     private static readonly IBrush KeyHold = Brush("#C9893F");   // held keyframes (square)
     private static readonly IBrush KeyEase = Brush("#4FB286");   // eased keyframes (circle)

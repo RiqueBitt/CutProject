@@ -17,23 +17,33 @@ follow so surfaces never drift apart again.
 
 | Token | Value | Used for |
 | --- | --- | --- |
-| `WindowBg` | `#0E0E12` | Window and dialog backgrounds, **and every popup surface** — context menus, MenuFlyouts, menu-bar dropdowns, ComboBox dropdowns, plain Flyouts, ToolTips. |
-| `PanelBg` | `#16161C` | Docked panes, input fills (TextBox/ComboBox closed state), secondary buttons. |
-| `RaisedBg` | `#22222B` | Elevation-1 chrome: pane headers, transport buttons, caption-button hover. |
-| `SectionBg` | `#101015` | Inset cards (Inspector section cards) — a step darker than the panel they sit on. |
-| `Edge` | `#2A2A33` | The universal 1 px border: panes, **popup borders**, separators. |
-| `InputEdge` | `#5A6270` | Borders on editable fields sitting on `SectionBg` (Edge is invisible there). |
-| `Text` / `MutedText` / `FaintText` | `#D5DBE6` / `#9AA4B2` / `#8A93A3` | Text ramp; see contrast floors below. |
-| `Accent` / `AccentHover` | `#6C5CE7` / `#5B4BD6` | The one indigo accent: primary buttons, hover/selection fills (always with white text), playhead, selection outlines. |
-| `Good` / `Warn` / `Bad` | `#3FB950` / `#D29922` / `#F85149` | Semantic status (status dot, playback-stats health). |
-| `Danger` | `#C0392B` | Destructive action (close-button hover). |
+| `WindowBg` | `#131417` | Window and dialog backgrounds, **and every popup surface** — context menus, MenuFlyouts, menu-bar dropdowns, ComboBox dropdowns, plain Flyouts, ToolTips. |
+| `PanelBg` | `#1E1F24` | Docked panes, input fills (TextBox/ComboBox closed state), secondary buttons. |
+| `RaisedBg` | `#343742` | Elevation-1 chrome: pane headers, transport buttons, caption-button hover, card rows. |
+| `SectionBg` | `#17181C` | Inset cards (Inspector section cards) — a step darker than the panel they sit on. |
+| `Edge` | `#2E3038` | The universal 1 px border: panes, **popup borders**, separators. |
+| `InputEdge` | `#5A5E6B` | Borders on editable fields sitting on `SectionBg` (Edge — and the palette's secondary border `#3A3D47` — is too faint there). |
+| `Text` / `MutedText` / `FaintText` | `#F0F5FA` / `#A9AEBB` / `#8E93A0` | Text ramp; see contrast floors below. |
+| `Accent` / `AccentHover` | `#F87171` / `#FCA5A5` | The one coral accent: primary buttons, hover/selection fills (always with `OnAccent` text), playhead, selection outlines. |
+| `OnAccent` | `#131417` | Text and glyphs drawn on an `Accent`/`AccentHover` fill (white fails AA on coral). |
+| `AccentText` | `#FCA5A5` | Accent-colored *text* on `RaisedBg` cards/rows, where plain `Accent` text drops below 4.5:1. |
+| `Good` / `Warn` / `Bad` | `#3FB950` / `#D29922` / `#FF2D55` | Semantic status (status dot, playback-stats health, meter clip). `Bad` is a saturated crimson so it never reads as the coral accent. |
+| `Danger` | `#C0392B` | Destructive action (close-button hover, with white text). |
+
+**Project Club palette.** CutProject ships with the shared Project Club dark palette as its default
+look: backgrounds `#1E1F24` (panels) / `#17181C` (secondary) / `#131417` (window) / `#0E0F12`
+(deepest — the timeline and the program/source monitor surround, set locally in
+`TimelineControl.cs` / `PreviewSurface.cs`), borders `#2E3038` (`#3A3D47` secondary), controls
+`#343742`, text `#F0F5FA` / `#A9AEBB`. The per-app accent for CutProject is coral red `#F87171`
+(lighter `#FCA5A5`, darker `#DC2626`, the latter used in the Fluent `SystemAccentColor` ramp).
 
 ## Surface rules
 
 - **Dialog windows** (all are code-built): `Background = Palette.WindowBgBrush`; inputs and
-  secondary buttons on `PanelBg`; the primary action button on `Accent` (`Button.primary`).
+  secondary buttons on `PanelBg`; the primary action button on `Accent` (`Button.primary`) with
+  `OnAccent` text.
 - **Popups — menus, flyouts, dropdowns, tooltips**: `WindowBg` surface + 1 px `Edge` border,
-  item hover = `Accent` with white text, pressed = `AccentHover`. This is implemented **once**,
+  item hover = `Accent` with `OnAccent` text, pressed = `AccentHover`. This is implemented **once**,
   as Fluent theme-resource overrides in `App.axaml` `Application.Resources`
   (`MenuFlyoutPresenter*` / `MenuFlyoutItem*` / `FlyoutPresenter*` / `ComboBoxDropDown*` /
   `ComboBoxItem*` / `ToolTip*` keys) — creation sites must **not** set popup backgrounds locally.
@@ -44,15 +54,21 @@ follow so surfaces never drift apart again.
   dialogs, for a uniform near-black look — separation comes from the `Edge` border and the OS
   popup drop shadow. Don't "fix" popups back to a lighter surface.
 - **Fluent accent**: `App.axaml` pins `SystemAccentColor` (+ its Dark1–3/Light1–3 ramp) to the
-  Sprocket indigo so Fluent's accent-tinted states (CheckBox, Slider fill, text selection,
-  ComboBox selection) match `Palette.Accent` instead of the OS accent color.
+  CutProject coral so Fluent's accent-tinted states (CheckBox, Slider fill, text selection,
+  ComboBox selection) match `Palette.Accent` instead of the OS accent color. The checked
+  ToggleButton foreground and CheckBox glyph keys are pinned to `OnAccent` there too.
 
 ## Contrast floors
 
-- Every step of the text ramp clears **WCAG AA (≥ 4.5:1)** on the surfaces above at label sizes;
-  `FaintText` is the AA floor (5.8:1 on `PanelBg`). See the notes in `Palette.cs`.
-- White text on `Accent` is 4.86:1; `AccentHover` darkens (not lightens) so white stays ≥ 4.5:1
-  on hover. Never introduce a lighter hover fill behind white text.
+- Every step of the text ramp clears **WCAG AA (≥ 4.5:1)** on the background surfaces at label
+  sizes; `FaintText` is the AA floor (5.3:1 on `PanelBg`, 5.8:1 on `SectionBg`, 6.0:1 on
+  `WindowBg`). On the lighter `RaisedBg` use `Text` (10.8:1) or `MutedText` (5.3:1) — `FaintText`
+  is only 3.9:1 there. See the notes in `Palette.cs`.
+- Text on an accent fill is `OnAccent`, never white: white on the coral `Accent` is only 2.8:1.
+  `OnAccent` on `Accent` is 6.7:1 and on `AccentHover` 9.7:1, so with dark text the hover
+  **lightens** (not darkens). Never put white or light text on an `Accent`/`AccentHover` fill.
+- `Accent` as text is 5.9:1 on `PanelBg` and 6.7:1 on `WindowBg`, but 4.3:1 on `RaisedBg` —
+  accent-colored text on `RaisedBg` uses `AccentText` (6.2:1).
 
 ## Typography
 
@@ -90,7 +106,8 @@ follow so surfaces never drift apart again.
 ## Checklist for a new dialog or popup
 
 1. Window background: `Palette.WindowBgBrush`. No local hex.
-2. Inputs/secondary buttons: `PanelBgBrush`; primary action: `Button.primary` / `AccentBrush`.
+2. Inputs/secondary buttons: `PanelBgBrush`; primary action: `Button.primary` / `AccentBrush` with
+   `OnAccentBrush` text.
 3. Any popup the dialog opens (ComboBox, flyout, tooltip): confirm its Fluent keys are in the
    `App.axaml` popup-overrides block; add missing keys there.
 4. Text color: use the ramp tokens; check contrast if placing text on a new fill.

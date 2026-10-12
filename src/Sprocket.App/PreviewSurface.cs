@@ -23,7 +23,7 @@ namespace Sprocket.App;
 /// </summary>
 public sealed class PreviewSurface : Control
 {
-    private static readonly SKColor Background = new(0x0E, 0x0E, 0x12);
+    private static readonly SKColor Background = new(0x0E, 0x0F, 0x12);
 
     private PlaybackEngine? _engine;
     private SkiaEffectPipeline? _pipeline;

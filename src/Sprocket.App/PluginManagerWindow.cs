@@ -293,7 +293,7 @@ internal sealed class PluginManagerWindow : Window
     {
         Content = text,
         Padding = new Thickness(14, 5),
-        Foreground = accent ? Brushes.White : Palette.TextBrush,
+        Foreground = accent ? Palette.OnAccentBrush : Palette.TextBrush,
         Background = accent ? Palette.AccentBrush : Palette.PanelBgBrush,
         CornerRadius = new CornerRadius(5),
     };

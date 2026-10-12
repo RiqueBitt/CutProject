@@ -35,8 +35,10 @@ public sealed class MediaBrowserPanel : UserControl
     private static readonly IBrush TextBrush = Palette.TextBrush;
     private static readonly IBrush MutedText = Palette.MutedTextBrush;
     private static readonly IBrush FaintText = Palette.FaintTextBrush;
-    private static readonly IBrush Accent = Palette.AccentBrush;
-    private static readonly IBrush BadgeBg = Hex("#2E2E38"); // media-badge chip — component-specific, stays local
+    private static readonly IBrush AccentText = Palette.AccentTextBrush; // Project Club: coral claro p/ texto sobre RaisedBg
+    // Project Club: o tile agora é RaisedBg (#343742), então o chip fica um passo mais escuro (inset) para
+    // continuar visível — MutedText sobre ele ~6.7:1.
+    private static readonly IBrush BadgeBg = Hex("#26282F"); // media-badge chip — component-specific, stays local
 
     private const double TileWidth = 116;
     private const int PosterW = 104;
@@ -381,7 +383,7 @@ public sealed class MediaBrowserPanel : UserControl
     private Control EffectRow(EffectDescriptor effect)
     {
         var title = new TextBlock { Text = effect.DisplayName, FontSize = Typography.Body, Foreground = TextBrush, FontWeight = FontWeight.SemiBold };
-        var category = new TextBlock { Text = effect.Category.ToString(), FontSize = Typography.Micro, Foreground = Accent };
+        var category = new TextBlock { Text = effect.Category.ToString(), FontSize = Typography.Micro, Foreground = AccentText };
         var header = new DockPanel();
         DockPanel.SetDock(category, Dock.Right);
         header.Children.Add(category);
