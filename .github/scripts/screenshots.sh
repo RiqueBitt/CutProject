@@ -21,6 +21,7 @@ click 176 122; shot painel-transicoes 2
 click 46 122; sleep 1
 key ctrl+e; shot exportar 4
 key Escape; sleep 1
-key ctrl+comma; shot preferencias 3
+click 322 24; shot menu-sequencia 2
+key Escape; click 518 24; shot menu-janela 2
 key Escape
 finish
