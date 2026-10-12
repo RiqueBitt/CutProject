@@ -25,3 +25,8 @@ click 322 24; shot menu-sequencia 2
 key Escape; click 518 24; shot menu-janela 2
 key Escape
 finish
+# A janela do CutProject abre em 1282x802 (não ocupa a tela toda): recorta
+# só a janela e amplia para 1600x1000, sem a borda preta.
+for f in "$OUT"/*.png; do
+  convert "$f" -crop 1282x802+8+8 +repage -resize 1600x1000\! "$f"
+done
