@@ -131,7 +131,7 @@ public sealed class McpServerHost : IAsyncDisposable
             !string.Equals(request.Headers["Authorization"], $"Bearer {token}", StringComparison.Ordinal))
         {
             TryRespondError(context, "Unauthorized: this server requires its bearer token " +
-                "(see DaVinci Project's Preferences > AI control).", 401);
+                "(see CutProject's Preferences > AI control).", 401);
             return;
         }
 
@@ -171,8 +171,8 @@ public sealed class McpServerHost : IAsyncDisposable
         {
             ServerInfo = new Implementation
             {
-                Name = "DaVinci Project",
-                Title = "DaVinci Project video editor",
+                Name = "CutProject",
+                Title = "CutProject video editor",
                 Version = ServerVersion,
             },
             ToolCollection = [],

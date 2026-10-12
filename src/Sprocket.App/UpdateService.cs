@@ -19,7 +19,7 @@ internal sealed class UpdateService
 {
     /// <summary>Onde as releases são publicadas — usado só pros links "Release Notes"/"Releases page" na UI
     /// (o auto-update de verdade via Velopack está desligado, ver o comentário no construtor abaixo).</summary>
-    public const string RepoUrl = "https://github.com/RiqueBitt/DaVinci-Project";
+    public const string RepoUrl = "https://github.com/RiqueBitt/CutProject";
 
     /// <summary>The human releases page, for portable/dev builds that can't self-update.</summary>
     public const string ReleasesPageUrl = RepoUrl + "/releases";
@@ -82,7 +82,7 @@ internal sealed class UpdateService
         // faça só ser atualizado pelo próprio Project Club, não usar
         // atualizações de fora" — esse serviço (Velopack + GithubSource)
         // checava e baixava atualizações direto do repositório GitHub
-        // original do Sprocket, nada relacionado ao DaVinci Project/
+        // original do Sprocket, nada relacionado ao CutProject/
         // Project Club. O Project Club já tem seu próprio sistema de
         // atualização em segundo plano pra todos os apps instalados
         // (checkAndUpdateInstalledModules, do lado do launcher desktop)

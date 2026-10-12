@@ -177,7 +177,7 @@ public partial class MainWindow : Window
 
     /// <summary>The Sprocket project file type (a JSON sidecar) for the open / save-as pickers.</summary>
     private static readonly FilePickerFileType SprocketProjectFileType =
-        new("DaVinci Project project") { Patterns = ["*.sprocket.json", "*.json"] };
+        new("CutProject project") { Patterns = ["*.sprocket.json", "*.json"] };
 
     /// <summary>Import file-type filters for the media open dialog (PLAN.md step 27 import coverage): the common
     /// containers and audio-only formats the FFmpeg 8 decode path handles. Unsupported / corrupt files still fail
@@ -1561,7 +1561,7 @@ public partial class MainWindow : Window
         if (_updateToast is null)
             return;
         if (_updateToastText is not null)
-            _updateToastText.Text = $"DaVinci Project {version} is available.";
+            _updateToastText.Text = $"CutProject {version} is available.";
         _updateToast.IsVisible = true;
         _updateToastTimer ??= new DispatcherTimer { Interval = TimeSpan.FromSeconds(9) };
         _updateToastTimer.Tick -= OnUpdateToastTick;
@@ -1651,7 +1651,7 @@ public partial class MainWindow : Window
         }
 
         bool add = await ConfirmDialog.Show(this, "Add to Applications Menu",
-            "Add DaVinci Project to your applications menu so you can launch it like any installed app? "
+            "Add CutProject to your applications menu so you can launch it like any installed app? "
             + "This adds a launcher and icon for your user account — you can remove it later from the Help menu.",
             "Add", "Not Now");
 
@@ -1679,9 +1679,9 @@ public partial class MainWindow : Window
             ok = false;
         }
         await MessageDialog.Show(this, "Applications Menu", ok
-            ? "DaVinci Project was added to your applications menu. If it doesn't appear right away, log out and back "
+            ? "CutProject was added to your applications menu. If it doesn't appear right away, log out and back "
               + "in (or restart the desktop shell) to refresh the menu."
-            : "DaVinci Project could not be added to the applications menu. See Help ▸ About ▸ Open Logs Folder for details.");
+            : "CutProject could not be added to the applications menu. See Help ▸ About ▸ Open Logs Folder for details.");
     }
 
     /// <summary>Help ▸ Remove from Applications Menu: removes the launcher + icon this user installed.</summary>
@@ -1689,8 +1689,8 @@ public partial class MainWindow : Window
     {
         bool ok = await Task.Run(LinuxDesktopIntegration.Uninstall);
         await MessageDialog.Show(this, "Applications Menu", ok
-            ? "DaVinci Project was removed from your applications menu."
-            : "DaVinci Project could not be removed from the applications menu. See Help ▸ About ▸ Open Logs Folder for details.");
+            ? "CutProject was removed from your applications menu."
+            : "CutProject could not be removed from the applications menu. See Help ▸ About ▸ Open Logs Folder for details.");
     }
 
     /// <summary>

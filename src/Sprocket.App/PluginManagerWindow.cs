@@ -67,7 +67,7 @@ internal sealed class PluginManagerWindow : Window
             {
                 new TextBlock
                 {
-                    Text = "Effect plugins extend DaVinci Project with extra video and audio effects. Disable one to stop "
+                    Text = "Effect plugins extend CutProject with extra video and audio effects. Disable one to stop "
                         + "loading it, or install a plugin assembly (.dll) into your user plugins folder. Native "
                         + "LADSPA and LV2 audio plugins and frei0r video filters found on your system's plugin paths "
                         + "(or in the LADSPA / LV2 / frei0r folders under your user plugins folder) are listed here too.",

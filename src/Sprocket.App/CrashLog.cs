@@ -31,7 +31,7 @@ internal static class CrashLog
     /// write; shown in the About dialog.</summary>
     public static string LogDirectory { get; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-        "DaVinci Project", "logs");
+        "CutProject", "logs");
 
     /// <summary>The current log file: one per day, so the folder neither fills with a file per crash nor
     /// grows without bound within a single session.</summary>
@@ -72,7 +72,7 @@ internal static class CrashLog
             var sb = new StringBuilder();
             sb.Append("\n===== ").Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"))
               .Append("  ·  ").Append(context).Append(" =====\n");
-            sb.Append("DaVinci Project ").Append(Program.AppVersion)
+            sb.Append("CutProject ").Append(Program.AppVersion)
               .Append("  ·  ").Append(RuntimeInformation.OSDescription)
               .Append("  ·  ").Append(RuntimeInformation.OSArchitecture)
               .Append("  ·  .NET ").Append(RuntimeInformation.FrameworkDescription).Append('\n');

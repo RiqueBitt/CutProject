@@ -21,7 +21,7 @@ internal static class McpCheck
 
     private static async Task<int> RunAsync()
     {
-        Console.WriteLine("== DaVinci Project mcp-check ==");
+        Console.WriteLine("== CutProject mcp-check ==");
 
         // Bind an unprivileged loopback port; retry a small range so a busy port doesn't fail the smoke.
         McpServerHost? host = null;

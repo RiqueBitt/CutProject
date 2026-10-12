@@ -1,6 +1,6 @@
-name: Build DaVinci Project release
+name: Build CutProject release
 
-# Empacota o DaVinci Project (editor de vídeo, base Sprocket) no formato
+# Empacota o CutProject (editor de vídeo, base Sprocket) no formato
 # que o módulo do Project Club consome — um arquivo único por
 # plataforma, mesmo padrão já usado pelo ProjectMC/PhotoProject/
 # HyProject. Reaproveita scripts/release.ps1 do próprio projeto (já
@@ -30,23 +30,23 @@ jobs:
       - name: Build win-x64 (zip)
         shell: pwsh
         run: ./scripts/release.ps1 -Version '${{ inputs.version }}' -Rids win-x64 -Package zip
-      - name: Renomear para DaVinciProject.exe
+      - name: Renomear para CutProject.exe
         shell: pwsh
         run: |
           $zip = Get-ChildItem -Path dist -Filter "*win-x64.zip" -Depth 0 | Select-Object -First 1
           if (-not $zip) { Write-Error "Não encontrei o zip win-x64 gerado."; Get-ChildItem dist; exit 1 }
           New-Item -ItemType Directory -Path stage -Force | Out-Null
           Expand-Archive -Path $zip.FullName -DestinationPath stage -Force
-          if (-not (Test-Path stage/DaVinciProject.exe)) {
-            Write-Error "stage/DaVinciProject.exe não foi gerado — dotnet publish pode não ter usado o AssemblyName esperado."
+          if (-not (Test-Path stage/CutProject.exe)) {
+            Write-Error "stage/CutProject.exe não foi gerado — dotnet publish pode não ter usado o AssemblyName esperado."
             Get-ChildItem stage
             exit 1
           }
-          Compress-Archive -Path stage/* -DestinationPath "davinciproject-${{ inputs.version }}-win.zip" -Force
+          Compress-Archive -Path stage/* -DestinationPath "cutproject-${{ inputs.version }}-win.zip" -Force
       - uses: actions/upload-artifact@v4
         with:
-          name: davinciproject-win
-          path: davinciproject-${{ inputs.version }}-win.zip
+          name: cutproject-win
+          path: cutproject-${{ inputs.version }}-win.zip
 
   build-linux:
     runs-on: ubuntu-24.04
@@ -69,17 +69,17 @@ jobs:
       - name: Build linux-x64 (zip)
         shell: pwsh
         run: ./scripts/release.ps1 -Version '${{ inputs.version }}' -Rids linux-x64 -Package zip
-      - name: Renomear para DaVinciProject
+      - name: Renomear para CutProject
         run: |
           set -e
           ZIP=$(find dist -maxdepth 1 -iname "*linux-x64.zip" | head -n1)
           if [ -z "$ZIP" ]; then echo "Não encontrei o zip linux-x64 gerado."; ls -la dist/; exit 1; fi
           mkdir -p stage
           unzip -q "$ZIP" -d stage
-          test -f stage/DaVinciProject || { echo "stage/DaVinciProject não foi gerado — dotnet publish pode não ter usado o AssemblyName esperado."; ls -la stage/; exit 1; }
-          chmod +x stage/DaVinciProject
+          test -f stage/CutProject || { echo "stage/CutProject não foi gerado — dotnet publish pode não ter usado o AssemblyName esperado."; ls -la stage/; exit 1; }
+          chmod +x stage/CutProject
           cd stage
-          tar -czf "../davinciproject-${{ inputs.version }}-linux.tar.gz" .
+          tar -czf "../cutproject-${{ inputs.version }}-linux.tar.gz" .
           cd ..
       - name: Empacotar AppImage
         run: |
@@ -93,48 +93,51 @@ jobs:
           APPDIR="$GITHUB_WORKSPACE/AppDir"
           mkdir -p "$APPDIR/usr/bin"
           cp -r stage/* "$APPDIR/usr/bin/"
-          cp src/Sprocket.App/Assets/sprocket.png "$APPDIR/davinciproject.png"
-          cat > "$APPDIR/davinciproject.desktop" << 'DESKTOP_EOF'
+          cp src/Sprocket.App/Assets/sprocket.png "$APPDIR/cutproject.png"
+          cat > "$APPDIR/cutproject.desktop" << 'DESKTOP_EOF'
           [Desktop Entry]
           Type=Application
-          Name=DaVinci Project
-          Exec=DaVinciProject
-          Icon=davinciproject
+          Name=CutProject
+          Exec=CutProject
+          Icon=cutproject
           Categories=AudioVideo;
           DESKTOP_EOF
           cat > "$APPDIR/AppRun" << 'APPRUN_EOF'
           #!/bin/bash
           DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-          exec "$DIR/usr/bin/DaVinciProject" "$@"
+          exec "$DIR/usr/bin/CutProject" "$@"
           APPRUN_EOF
-          chmod +x "$APPDIR/AppRun" "$APPDIR/usr/bin/DaVinciProject"
+          chmod +x "$APPDIR/AppRun" "$APPDIR/usr/bin/CutProject"
           wget -q "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool
           chmod +x appimagetool
-          ./appimagetool --appimage-extract-and-run "$APPDIR" "davinciproject-${{ inputs.version }}-linux.AppImage"
-          chmod +x "davinciproject-${{ inputs.version }}-linux.AppImage"
+          ./appimagetool --appimage-extract-and-run "$APPDIR" "cutproject-${{ inputs.version }}-linux.AppImage"
+          chmod +x "cutproject-${{ inputs.version }}-linux.AppImage"
       - uses: actions/upload-artifact@v4
         with:
-          name: davinciproject-linux
-          path: davinciproject-${{ inputs.version }}-linux.tar.gz
+          name: cutproject-linux
+          path: cutproject-${{ inputs.version }}-linux.tar.gz
       - uses: actions/upload-artifact@v4
         with:
-          name: davinciproject-linux-appimage
-          path: davinciproject-${{ inputs.version }}-linux.AppImage
+          name: cutproject-linux-appimage
+          path: cutproject-${{ inputs.version }}-linux.AppImage
 
   publish:
     needs: [build-windows, build-linux]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/download-artifact@v4
         with: { path: dist }
-      - name: Publicar release em DaVinci-Project-releases
+      - name: Publicar release neste repositório
         env:
-          GH_TOKEN: ${{ secrets.RELEASES_REPO_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "v${{ inputs.version }}" \
-            dist/davinciproject-win/davinciproject-${{ inputs.version }}-win.zip \
-            dist/davinciproject-linux/davinciproject-${{ inputs.version }}-linux.tar.gz \
-            dist/davinciproject-linux-appimage/davinciproject-${{ inputs.version }}-linux.AppImage \
-            --repo RiqueBitt/DaVinci-Project-releases \
-            --title "DaVinci Project v${{ inputs.version }}" \
-            --notes "Build automática do DaVinci Project — editor de vídeo opcional do Project Club."
+            dist/cutproject-win/cutproject-${{ inputs.version }}-win.zip \
+            dist/cutproject-linux/cutproject-${{ inputs.version }}-linux.tar.gz \
+            dist/cutproject-linux-appimage/cutproject-${{ inputs.version }}-linux.AppImage \
+            --repo ${{ github.repository }} \
+            --target ${{ github.sha }} \
+            --title "CutProject v${{ inputs.version }}" \
+            --notes "Build automática do CutProject — editor de vídeo opcional do Project Club."

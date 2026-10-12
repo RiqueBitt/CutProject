@@ -26,7 +26,7 @@ public static class ProxyCache
         string baseDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         if (string.IsNullOrEmpty(baseDir))
             baseDir = Path.Combine(AppContext.BaseDirectory, "cache");
-        return Path.Combine(baseDir, "DaVinci Project", "proxies");
+        return Path.Combine(baseDir, "CutProject", "proxies");
     }
 
     /// <summary>Total size in bytes of everything in the proxy cache (0 when the directory is absent).</summary>

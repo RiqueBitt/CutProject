@@ -64,7 +64,7 @@ internal static class WindowStateStore
     private static string BuildSettingsPath()
     {
         string dir = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DaVinci Project");
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CutProject");
         return Path.Combine(dir, "window.json");
     }
 

@@ -28,7 +28,7 @@ namespace Sprocket.App;
 internal static class AppIcon
 {
     public static readonly Bitmap Bitmap =
-        new(AssetLoader.Open(new Uri("avares://DaVinciProject/Assets/sprocket.png")));
+        new(AssetLoader.Open(new Uri("avares://CutProject/Assets/sprocket.png")));
 
     public static WindowIcon Window => new(Bitmap);
 }
@@ -45,7 +45,7 @@ internal static class AboutDialog
     // único que continua, já apontando pro repositório real.
 
     /// <summary>The GitHub new-issue chooser, opened by Help ▸ Report an Issue.</summary>
-    public const string ReportIssueUrl = "https://github.com/RiqueBitt/DaVinci-Project/issues/new/choose";
+    public const string ReportIssueUrl = "https://github.com/RiqueBitt/CutProject/issues/new/choose";
 
     /// <summary>Documented exception to the <see cref="Typography"/> scale (STYLE_GUIDE.md): the About
     /// box's "Sprocket" wordmark is brand presentation, not UI chrome, so it sits above the token scale
@@ -90,7 +90,7 @@ internal static class AboutDialog
 
         var dialog = new Window
         {
-            Title = "About DaVinci Project",
+            Title = "About CutProject",
             Icon = AppIcon.Window,
             Width = 420,
             Height = 380,
@@ -105,7 +105,7 @@ internal static class AboutDialog
                 Children =
                 {
                     logo,
-                    Centered("DaVinci Project", AboutWordmarkSize, FontWeight.SemiBold, Palette.TextBrush),
+                    Centered("CutProject", AboutWordmarkSize, FontWeight.SemiBold, Palette.TextBrush),
                     Centered($"Version {Program.AppVersion}", Typography.Body, FontWeight.Normal, Palette.MutedTextBrush),
                     Centered($"Media engine: {ffmpeg}", Typography.Body, FontWeight.Normal, Palette.MutedTextBrush),
                     Centered("A cross-platform, non-destructive video editor. Free and open source.", Typography.Body, FontWeight.Normal, Palette.MutedTextBrush),

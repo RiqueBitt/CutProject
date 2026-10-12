@@ -54,13 +54,13 @@ public sealed class RenderCacheStore
         {
             string fullPath = Path.GetFullPath(projectFilePath);
             string dir = Path.GetDirectoryName(fullPath) ?? ".";
-            return Path.Combine(dir, "DaVinci Project Render Files", Path.GetFileNameWithoutExtension(fullPath));
+            return Path.Combine(dir, "CutProject Render Files", Path.GetFileNameWithoutExtension(fullPath));
         }
 
         string baseDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         if (string.IsNullOrEmpty(baseDir))
             baseDir = Path.Combine(AppContext.BaseDirectory, "cache");
-        return Path.Combine(baseDir, "DaVinci Project", "renders", "untitled");
+        return Path.Combine(baseDir, "CutProject", "renders", "untitled");
     }
 
     /// <summary>The absolute path of a segment's intermediate file.</summary>

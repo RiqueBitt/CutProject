@@ -136,7 +136,7 @@ internal static class LinuxDesktopIntegration
         "[Desktop Entry]",
         "Type=Application",
         "Version=1.0",
-        "Name=DaVinci Project",
+        "Name=CutProject",
         "GenericName=Video Editor",
         "Comment=Cross-platform, non-destructive video editor",
         $"Exec={QuoteExec(appImagePath)} %f",
@@ -144,7 +144,7 @@ internal static class LinuxDesktopIntegration
         "Terminal=false",
         "Categories=AudioVideo;AudioVideoEditing;Video;",
         "Keywords=video;editor;timeline;cut;clip;",
-        "StartupWMClass=DaVinci Project",
+        "StartupWMClass=CutProject",
         "");
 
     // Freedesktop Exec quoting: wrap in double quotes and backslash-escape the reserved characters that keep
@@ -160,14 +160,14 @@ internal static class LinuxDesktopIntegration
     }
 
     /// <summary>
-    /// Renders the embedded app icon (the same <c>avares://DaVinciProject/Assets/sprocket.png</c> the window uses)
+    /// Renders the embedded app icon (the same <c>avares://CutProject/Assets/sprocket.png</c> the window uses)
     /// to a PNG for each <see cref="IconSizes"/> bucket, high-quality-downscaled from the 1024px source. Uses
     /// Avalonia bitmap APIs, so <b>call it on the UI thread</b>; the resulting bytes are then written by the
     /// thread-agnostic <see cref="Install(IReadOnlyDictionary{int, byte[]})"/> off the UI thread.
     /// </summary>
     public static Dictionary<int, byte[]> RenderIcons()
     {
-        using var source = new Bitmap(AssetLoader.Open(new Uri("avares://DaVinciProject/Assets/sprocket.png")));
+        using var source = new Bitmap(AssetLoader.Open(new Uri("avares://CutProject/Assets/sprocket.png")));
         var result = new Dictionary<int, byte[]>(IconSizes.Length);
         foreach (int size in IconSizes)
         {

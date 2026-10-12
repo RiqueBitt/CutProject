@@ -14,7 +14,7 @@ namespace Sprocket.App;
 internal static class UserExportPresets
 {
     private static readonly string FilePath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DaVinci Project", "export-presets.json");
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CutProject", "export-presets.json");
 
     /// <summary>The user's persisted custom presets (empty if none / unreadable).</summary>
     public static IReadOnlyList<ExportPreset> Load() => ExportPresetStore.Load(FilePath);

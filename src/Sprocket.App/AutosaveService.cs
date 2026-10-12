@@ -29,7 +29,7 @@ public sealed class AutosaveService : IDisposable
     /// <summary>The per-user autosave slot for an untitled (never-saved) project.</summary>
     public static string UntitledAutosavePath { get; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-        "DaVinci Project", "untitled" + Autosave.Suffix);
+        "CutProject", "untitled" + Autosave.Suffix);
 
     public AutosaveService(Project project, EditHistory history, Func<string?> projectPath, TimeSpan? interval = null)
     {

@@ -90,7 +90,7 @@ internal static class PreferencesDialog
         };
         var updatesNote = new TextBlock
         {
-            Text = "DaVinci Project tells you when a newer build is published; nothing downloads or installs " +
+            Text = "CutProject tells you when a newer build is published; nothing downloads or installs " +
                    "without your say-so. Portable builds are pointed at the releases page instead.",
             Foreground = Palette.MutedTextBrush,
             FontSize = Typography.Caption,
@@ -211,8 +211,8 @@ internal static class PreferencesDialog
                                 Labeled("Copyright", copyright),
                                 Labeled("Comment", comment),
                                 Hint("Tokens {project}, {username}, {year} and {date} are replaced when you export. "
-                                    + "Leave Comment blank and every export still carries “Created with DaVinci Project” "
-                                    + "plus the DaVinci Project version."),
+                                    + "Leave Comment blank and every export still carries “Created with CutProject” "
+                                    + "plus the CutProject version."),
 
                                 Section("Autosave"),
                                 Labeled($"Interval (seconds, {UserSettingsStore.MinAutosaveSeconds}–{UserSettingsStore.MaxAutosaveSeconds})", autosave),
@@ -223,7 +223,7 @@ internal static class PreferencesDialog
                                 Section("Audio"),
                                 Labeled("Output device", audioDevice),
                                 Hint("Choose where playback is monitored. A change applies immediately without "
-                                    + "interrupting playback; if the chosen device is later unavailable, DaVinci Project "
+                                    + "interrupting playback; if the chosen device is later unavailable, CutProject "
                                     + "uses the system default."),
 
                                 Section("Updates"),

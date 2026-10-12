@@ -73,7 +73,7 @@ internal static class PluginService
         var dirs = new List<string>(systemDirectories);
         string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         if (!string.IsNullOrEmpty(appData))
-            dirs.Add(Path.Combine(appData, "DaVinci Project", "Plugins", formatFolder));
+            dirs.Add(Path.Combine(appData, "CutProject", "Plugins", formatFolder));
         return dirs.Distinct(StringComparer.Ordinal).ToList();
     }
 
@@ -89,7 +89,7 @@ internal static class PluginService
         };
         string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         if (!string.IsNullOrEmpty(appData))
-            directories.Add(new(Path.Combine(appData, "DaVinci Project", "Plugins"), IsUserWritable: true));
+            directories.Add(new(Path.Combine(appData, "CutProject", "Plugins"), IsUserWritable: true));
         return directories;
     }
 }

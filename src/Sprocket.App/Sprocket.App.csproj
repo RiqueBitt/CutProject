@@ -9,11 +9,11 @@
     <OutputType>WinExe</OutputType>
     <!-- Item pedido: "mude o nome do .exe e no Linux para o nome do
          projeto" — o executável final se chama exatamente isso, tanto
-         no Windows (DaVinciProject.exe) quanto no Linux
-         (DaVinciProject). O nome do projeto/assembly em si (Sprocket.App,
+         no Windows (CutProject.exe) quanto no Linux
+         (CutProject). O nome do projeto/assembly em si (Sprocket.App,
          referenciado em dezenas de using/namespace no código) não
          precisou mudar — só o nome do ARQUIVO final gerado. -->
-    <AssemblyName>DaVinciProject</AssemblyName>
+    <AssemblyName>CutProject</AssemblyName>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>

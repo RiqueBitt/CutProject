@@ -122,7 +122,7 @@ public static partial class FFmpegLoader
             _versionChecked = true;
             if (major != RequiredAvcodecMajor)
                 throw new FFmpegException("FFmpeg version check", 0,
-                    $"libavcodec major {major} found, but DaVinci Project requires FFmpeg 8 (libavcodec {RequiredAvcodecMajor}). " +
+                    $"libavcodec major {major} found, but CutProject requires FFmpeg 8 (libavcodec {RequiredAvcodecMajor}). " +
                     "Install/bundle FFmpeg 8, or point %SPROCKET_FFMPEG8_DIR% at an FFmpeg 8 build.");
         }
     }

@@ -23,6 +23,10 @@ internal static class Program
         // process before any app code touches files that are about to be swapped. A plain launch falls through.
         Velopack.VelopackApp.Build().Run();
 
+        // O app se chamava "DaVinci Project": traz as pastas de dados antigas para o nome novo (CutProject)
+        // antes de qualquer serviço abrir configurações, logs ou caches.
+        LegacyDataMigration.Run();
+
         // Install the global crash logger next, before anything that can fault, so even an early failure
         // (e.g. FFmpeg natives missing) is written to a discoverable log file rather than vanishing with the
         // window. The log directory is surfaced in Help ▸ About (see CrashLog).
@@ -45,7 +49,7 @@ internal static class Program
 
         if (args.Contains("--version"))
         {
-            Console.WriteLine($"DaVinci Project {AppVersion}");
+            Console.WriteLine($"CutProject {AppVersion}");
             return 0;
         }
 

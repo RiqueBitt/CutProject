@@ -14,7 +14,7 @@ namespace Sprocket.App;
 internal static class UserSettingsFile
 {
     private static readonly string SettingsPath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DaVinci Project", "settings.json");
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CutProject", "settings.json");
 
     /// <summary>Loads the stored settings, or defaults when absent/unreadable.</summary>
     public static UserSettings Load()

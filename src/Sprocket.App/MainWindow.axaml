@@ -8,7 +8,7 @@
         Width="1280" Height="800"
         MinWidth="900" MinHeight="600"
         WindowStartupLocation="CenterScreen"
-        Title="DaVinci Project"
+        Title="CutProject"
         Icon="/Assets/sprocket.png"
         Background="{DynamicResource WindowBg}">
 
@@ -48,7 +48,7 @@
           <Image Source="/Assets/sprocket.png" Width="22" Height="22" Margin="0,0,8,0"
                  VerticalAlignment="Center" />
 
-          <TextBlock Text="DaVinci Project" Foreground="{DynamicResource Text}" FontWeight="SemiBold"
+          <TextBlock Text="CutProject" Foreground="{DynamicResource Text}" FontWeight="SemiBold"
                      FontSize="{x:Static local:Typography.Emphasis}" VerticalAlignment="Center" />
         </StackPanel>
 
@@ -248,7 +248,7 @@
             <MenuItem x:Name="ReportIssueMenuItem" Header="_Report an Issue…" />
             <MenuItem x:Name="ThirdPartyNoticesMenuItem" Header="_Third-Party Notices" />
             <Separator />
-            <MenuItem x:Name="AboutMenuItem" Header="_About DaVinci Project" />
+            <MenuItem x:Name="AboutMenuItem" Header="_About CutProject" />
           </MenuItem>
         </Menu>
 

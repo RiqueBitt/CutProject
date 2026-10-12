@@ -49,7 +49,7 @@ internal static class Doctor
     {
         bool fail = false;
 
-        Line("== DaVinci Project doctor ==");
+        Line("== CutProject doctor ==");
         Line($"version : {Program.AppVersion}");
         Line($"os      : {RuntimeInformation.OSDescription}");
         Line($"arch    : {RuntimeInformation.OSArchitecture} (process {RuntimeInformation.ProcessArchitecture})");
@@ -126,7 +126,7 @@ internal static class Doctor
             }
 
             if (v < GlibcBaseline)
-                Warn($"libc    : glibc {v} is BELOW the supported baseline {GlibcBaseline} (Ubuntu 22.04) — DaVinci Project may run but is unsupported here.");
+                Warn($"libc    : glibc {v} is BELOW the supported baseline {GlibcBaseline} (Ubuntu 22.04) — CutProject may run but is unsupported here.");
             else
                 Ok($"libc    : glibc {v} (baseline {GlibcBaseline}+)");
             return false;

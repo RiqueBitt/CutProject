@@ -74,7 +74,7 @@ internal static class MacMenuBridge
     {
         var menu = new NativeMenu();
         if (aboutItem is not null)
-            menu.Items.Add(Forward(aboutItem, "About DaVinci Project"));
+            menu.Items.Add(Forward(aboutItem, "About CutProject"));
         if (aboutItem is not null && preferencesItem is not null)
             menu.Items.Add(new NativeMenuItemSeparator());
         if (preferencesItem is not null)

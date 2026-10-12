@@ -319,7 +319,7 @@ public sealed unsafe class MediaEncoder : IDisposable
         // `encoder` is the conventional "creating software" tag (MP4 ©too atom; FFmpeg would otherwise
         // stamp its own "Lavf…"); `comment` carries a human-readable note most players surface.
         format.SetMetadata("encoder", EncoderTag);
-        format.SetMetadata("comment", "Created with DaVinci Project");
+        format.SetMetadata("comment", "Created with CutProject");
     }
 
     private static string BuildEncoderTag()
@@ -330,7 +330,7 @@ public sealed unsafe class MediaEncoder : IDisposable
         // InformationalVersion can carry a "+<git-sha>" build suffix; drop it for a clean tag.
         int plus = version?.IndexOf('+') ?? -1;
         if (plus >= 0) version = version![..plus];
-        return string.IsNullOrEmpty(version) ? "DaVinci Project" : $"DaVinci Project {version}";
+        return string.IsNullOrEmpty(version) ? "CutProject" : $"CutProject {version}";
     }
 
     /// <summary>All native state for the video stream, so the probe/fallback loop can hand back one bundle (and

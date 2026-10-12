@@ -138,7 +138,7 @@ internal static class UpdateAvailableDialog
                         {
                             new TextBlock
                             {
-                                Text = $"DaVinci Project {service.AvailableVersion} is available.",
+                                Text = $"CutProject {service.AvailableVersion} is available.",
                                 Foreground = Palette.TextBrush,
                                 FontSize = Typography.Title,
                                 FontWeight = FontWeight.SemiBold,
@@ -296,7 +296,7 @@ internal static class UpdateNotInstalledDialog
                     {
                         Text = $"You are running {Program.AppVersion}. This is a portable or development " +
                                "build, so it doesn't update itself — new releases can be downloaded from " +
-                               "the DaVinci Project releases page.",
+                               "the CutProject releases page.",
                         Foreground = Palette.TextBrush,
                         FontSize = Typography.Body,
                         TextWrapping = TextWrapping.Wrap,
